@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+        <h1>Users</h1>
+            {% for user in user_list %}
+                <div class="container mt-5 d-flex justify-content-center">
+                    <div class="card p-3">
+                        <div class="d-flex align-items-center">
+                            <div class="image pe-2"> <img src="{{ url_for('static', filename='Profile_Pictures/{}'.format(user.user_picture))}}" class="rounded" width="155"> </div>
+                            <div class="ml-3 w-100">
+                                <h4 class="mb-0 mt-0">{{ user.username }}</h4> <span>{{ user.email }}</span>
+                                <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                    {% if 'Uninformed' in user.courses or user.courses == '' %}
+                                        <div class="d-flex flex-column"> <span class="articles">Courses</span> <span class="number1">0</span> </div>
+                                    {% else %}
+                                        <div class="d-flex flex-column"> <span class="articles">Courses</span> <span class="number1">{{ user.courses.count(';') + 1 }}</span> </div>
+                                    {% endif %}
+                
+                                    <div class="d-flex flex-column"> <span class="rating">Posts</span> <span class="number3">{{ user.posts_counter() }}</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row justify-content-center">
+                        <div class="col col-4" style="text-align: center">
+                            <strong>Classes</strong><br>
+                            {% for course in user.courses.split(';') %}
+                                <button type="button" class="btn btn-success mt-2" disabled>{{ course }}</button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+            {% endfor %}
+    </div>
+<div class="row mt-5"
+{% endblock %}

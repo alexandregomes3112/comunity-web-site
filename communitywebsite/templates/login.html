@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block body %}
+
+  <body>
+    <div class="container">
+      <h1>Login or Create An Account</h1>
+      <hr>
+      <div class="row">
+        <div class="col">
+          <form method="POST" action="" class="border p-4 mt-2" >
+            {{ form_login.csrf_token }}
+            <legent>Login</legent>
+            <fieldset>
+              <div class="form-group">
+                {{ form_login.email.label(class="form-control-label") }}
+
+                {% if form_login.email.errors %}
+                  {{ form_login.email(class="form-control is-invalid") }}
+                  <div class="'invalid-feedback">
+                    {% for erro in form_login.email.errors %}
+                      {{ erro }}
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                    {{ form_login.email(class="form-control") }}
+                  {% endif %}
+
+              </div>
+              <div class="form-group">
+                {{ form_login.password.label(class="form-control-label") }}
+                  {% if form_login.password.errors %}
+                    {{ form_login.password(class="form-control is-invalid") }}
+                      <div class="'invalid-feedback">
+                        {% for erro in form_login.password.errors %}
+                          {{ erro }}
+                        {% endfor %}
+                      </div>
+                  {% else %}
+                    {{ form_login.password(class="form-control") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form_login.data_remember.label(class="form-check-label") }}
+                {{ form_login.data_remember(class="form-check")}}
+              </div>
+
+            </fieldset>
+            {{ form_login.login_submit_button(class="btn btn-primary mt-2")  }}
+          </form>
+
+        </div>
+        <div class="col">
+          <form method="POST" action="" class="border p-4 mt-2" >
+            {{ form_create_account.csrf_token }}
+            <legend>Create Account</legend>
+            <fieldset>
+              <div class="form-group">
+                {{ form_create_account.username.label(class="form-control-label") }}
+                {% if form_create_account.username.errors %}
+                    {{ form_create_account.username(class="form-control is-invalid") }}
+                      <div class="'invalid-feedback">
+                        {% for erro in form_create_account.username.errors %}
+                          {{ erro }}
+                        {% endfor %}
+                      </div>
+                  {% else %}
+                    {{ form_create_account.username(class="form-control") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form_create_account.email.label(class="form-control-label") }}
+                {% if form_create_account.email.errors %}
+                    {{ form_create_account.email(class="form-control is-invalid") }}
+                      <div class="'invalid-feedback">
+                        {% for erro in form_create_account.email.errors %}
+                          {{ erro }}
+                        {% endfor %}
+                      </div>
+                  {% else %}
+                    {{ form_create_account.email(class="form-control") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form_create_account.password.label(class="form-control-label") }}
+                {% if form_create_account.password.errors %}
+                    {{ form_create_account.password(class="form-control is-invalid") }}
+                      <div class="'invalid-feedback">
+                        {% for erro in form_create_account.password.errors %}
+                          {{ erro }}
+                        {% endfor %}
+                      </div>
+                  {% else %}
+                    {{ form_create_account.password(class="form-control") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+              {{ form_create_account.password_validation.label(class="form-control-label") }}
+              {% if form_create_account.password_validation.errors %}
+                    {{ form_create_account.password_validation(class="form-control is-invalid") }}
+                      <div class="'invalid-feedback">
+                        {% for erro in form_create_account.password_validation.errors %}
+                          {{ erro }}
+                        {% endfor %}
+                      </div>
+                  {% else %}
+                    {{ form_create_account.password_validation(class="form-control") }}
+                  {% endif %}
+              </div>
+
+            </fieldset>
+              {{ form_create_account.create_button_submit(class="btn btn-primary mt-2")  }}
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </body>
+
+{% endblock %}

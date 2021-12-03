@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container mt-3">
+        <h1 style="color: Purple">Comunity Web Site</h1>
+        <h2>Be Whatever You Want To Be</h2>
+        <hr>
+        {% for post in posts %}
+        <div class="row border mt-4 p-3 mypost">
+            <div class="col col-3">
+                <div class="image pe-2"> <img src="{{ url_for('static', filename='Profile_Pictures/{}'.format(post.author.user_picture)) }}" class="rounded" width="200"> </div>
+                <strong>{{ post.author.username }}</strong>
+                <div class="row justify-content-center">
+                        {% for course in post.author.courses.split(';') %}
+                            <button type="button" class="btn btn-success mt-2" disabled>{{ course }}</button>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="col col-9">
+                <a style="text-decoration: none" href="{{ url_for('show_post', post_id=post.id) }}"><h3>{{ post.title }}</h3></a>
+                <p>{{ post.body }}</p>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
